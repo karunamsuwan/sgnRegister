@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Image, StyleSheet, Alert, SafeAreaView, useColorScheme } from 'react-native';
+import { View, FlatList, Image, StyleSheet, Alert, SafeAreaView, useColorScheme, TouchableOpacity, Linking } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 
 interface FileData {
@@ -45,7 +45,9 @@ const Files = () => {
     }, []);
 
     const renderFile = ({ item }: { item: FileData }) => (
-        <View style={[styles.fileItem, { backgroundColor: colorScheme === 'dark' ? '#333' : '#fff' }]}>
+        <TouchableOpacity style={[styles.fileItem, { backgroundColor: colorScheme === 'dark' ? '#333' : '#fff' }]}
+            onPress={() => Linking.openURL(item.fileUrl)}
+        >
             <Image
                 source={{ uri: item.fileUrl }}
                 style={styles.fileImage}
@@ -55,7 +57,7 @@ const Files = () => {
                 <ThemedText style={styles.fileName}>{item.fileName}</ThemedText>
                 <ThemedText style={styles.userId}>User :  {item.firstName} {item.lastName}</ThemedText>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 
     if (loading) {
