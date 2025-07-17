@@ -12,3 +12,12 @@ API สำหรับระบบลงทะเบียนผู้ใช้ 
 1. Clone โปรเจกต์
 2. npm install
 3. npm start
+
+**เปลี่ยน Network Local IP
+
+ไฟล์อยู่ที่ controolers/registercontroller.ts
+ที่ function getFiles ที่
+
+fileUrl: 'http://192.168.1.101:3000' + `/uploads/${file.fileName}`
+
+เปลี่ยนจาก 192.168.1.101 เป็น Local IP ของเครื่อง
